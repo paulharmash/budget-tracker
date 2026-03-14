@@ -4,3 +4,6 @@ version = "0.1.0"
 
 [project.scripts]
 budget-tracker = "budget_tracker.main:main"
+
+[tool.setuptools.packages.find]
+include = ['budget_tracker*']
