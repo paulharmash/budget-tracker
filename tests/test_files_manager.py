@@ -3,8 +3,8 @@ import os
 import shutil
 from pathlib import Path
 
-from src.files_manager import create_file
-from src.constants import *
+from budget_tracker.files_manager import create_file
+from budget_tracker.constants import *
 
 # The three test cases below are identical as for now that's what they have to check
 class TestWhenNothingExists(unittest.TestCase):
