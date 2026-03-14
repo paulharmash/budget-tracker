@@ -1,6 +1,7 @@
+from src.files_manager import create_file
+
 def main():
-    # your program logic here
-    pass
+    print(f"File path: {create_file()}")
 
 
 if __name__ == "__main__":
