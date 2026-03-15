@@ -1,8 +1,9 @@
 from budget_tracker.files_manager import create_file
+from budget_tracker.user_input import user_input
 
 def main():
-    print(f"File path: {create_file()}")
     create_file()
+    user_input()
 
 
 if __name__ == "__main__":
