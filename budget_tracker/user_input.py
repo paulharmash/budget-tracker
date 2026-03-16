@@ -1,9 +1,12 @@
 import datetime
+import questionary
+
+from budget_tracker.constants import CATEGORIES
 
 def user_input():
     date = date_input()
     category = category_input()
-    sum = sum_input()
+    amount = amount_input()
     currency = currency_input()
     print(f"User's input: {date}, {category}, {sum}, {currency}")
     #TODO - Write data to the table
@@ -22,9 +25,10 @@ def date_input():
                 print("Incorrect data format, should be DD/MM/YYYY")
 
 def category_input():
-    pass
+    return questionary.select("Pick the category",
+                       choices=CATEGORIES).ask()
 
-def sum_input():
+def amount_input():
     pass
 
 def currency_input():

@@ -2,14 +2,10 @@ import unittest
 import unittest.mock
 
 from budget_tracker.user_input import *
+from budget_tracker.constants import CATEGORIES
 
 # The three test cases below are identical as for now that's what they have to check
 class TestDateInput(unittest.TestCase):
-    def setUp(self):
-        pass
-    
-    def tearDown(self):
-        pass
     
     def test_enter(self):
         with unittest.mock.patch("budget_tracker.user_input.input", return_value=""):
@@ -41,3 +37,9 @@ class TestDateInput(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_date(entered)
         
+# Tests for the category input
+class TestCategoryInput(unittest.TestCase):
+    def test_category_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.select") as my_mock:
+            category_input()
+            my_mock.assert_called_with('Pick the category', choices=CATEGORIES)
