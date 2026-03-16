@@ -9,8 +9,9 @@ def user_input():
     category = category_input()
     amount = amount_input()
     currency = currency_input()
-    print(f"User's input: {date}, {type}, {category}, {sum}, {currency}")
+    print(f"User's input: {date}, {type}, {category}, {amount}, {currency}")
     #TODO - Write data to the table
+    #Note - I'm passing strings here, might want to change to something else later
 
 def date_input():
     t = datetime.datetime.now()
@@ -34,7 +35,9 @@ def category_input():
                        choices=CATEGORIES).ask()
 
 def amount_input():
-    pass
+    return questionary.text("Enter the amount",
+                            validate=lambda entry: True if entry.isdigit() else "Please enter an integer"
+                            ).ask()
 
 def currency_input():
     pass

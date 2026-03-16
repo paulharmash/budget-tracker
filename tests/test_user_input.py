@@ -50,3 +50,30 @@ class TestCategoryInput(unittest.TestCase):
         with unittest.mock.patch("budget_tracker.user_input.questionary.select") as my_mock:
             category_input()
             my_mock.assert_called_with('Pick the category', choices=CATEGORIES)
+
+# Tests for the amount input
+class TestAmountInput(unittest.TestCase):
+
+    def test_integer_amount_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
+            amount_input()
+            validate = my_mock.call_args[1]["validate"]
+            self.assertTrue(validate("111"))
+    
+    def test_non_integer_amount_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
+            amount_input()
+            validate = my_mock.call_args[1]["validate"]
+            self.assertEqual(validate("111.1"), 'Please enter an integer')
+    
+    def test_empty_amount_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
+            amount_input()
+            validate = my_mock.call_args[1]["validate"]
+            self.assertEqual(validate(""), 'Please enter an integer')
+    
+    def test_negative_amount_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
+            amount_input()
+            validate = my_mock.call_args[1]["validate"]
+            self.assertEqual(validate("-111"), 'Please enter an integer')
