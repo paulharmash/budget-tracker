@@ -2,7 +2,7 @@ import unittest
 import unittest.mock
 
 from budget_tracker.user_input import *
-from budget_tracker.constants import CATEGORIES
+from budget_tracker.constants import CATEGORIES, TYPE
 
 # The three test cases below are identical as for now that's what they have to check
 class TestDateInput(unittest.TestCase):
@@ -37,6 +37,13 @@ class TestDateInput(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_date(entered)
         
+# Tests for the type input
+class TestTypeInput(unittest.TestCase):
+    def test_type_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.select") as my_mock:
+            income_expences_choice()
+            my_mock.assert_called_with('Pick the category', choices=TYPE)
+
 # Tests for the category input
 class TestCategoryInput(unittest.TestCase):
     def test_category_input(self):

@@ -1,20 +1,21 @@
 import datetime
 import questionary
 
-from budget_tracker.constants import CATEGORIES
+from budget_tracker.constants import CATEGORIES, TYPE
 
 def user_input():
     date = date_input()
+    type = income_expences_choice()
     category = category_input()
     amount = amount_input()
     currency = currency_input()
-    print(f"User's input: {date}, {category}, {sum}, {currency}")
+    print(f"User's input: {date}, {type}, {category}, {sum}, {currency}")
     #TODO - Write data to the table
 
 def date_input():
     t = datetime.datetime.now()
     while True:
-        result = input(f"Date: [{t.strftime('%d')}/{t.strftime('%m')}/{t.strftime('%Y')}] OR enter your date: ")
+        result = input(f"Date: [{t.strftime('%d')}/{t.strftime('%m')}/{t.strftime('%Y')}] or enter custom date: ")
         if result == "":
             return (f"{t.strftime('%d')}/{t.strftime('%m')}/{t.strftime('%Y')}")
         else:
@@ -23,6 +24,10 @@ def date_input():
                 return valid_date
             except:
                 print("Incorrect data format, should be DD/MM/YYYY")
+
+def income_expences_choice():
+    return questionary.select("Pick the category",
+                       choices=TYPE).ask()                
 
 def category_input():
     return questionary.select("Pick the category",

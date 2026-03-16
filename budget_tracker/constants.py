@@ -2,6 +2,11 @@
 DATA_FOLDER = "./data"
 TABLE_NAME = "table.csv"
 
+# Income/expences
+INCOME = "Income"
+EXPENCES = "Expences"
+TYPE = [INCOME, EXPENCES]
+
 # Currencies
 USD = "USD"
 EUR = "EUR"
