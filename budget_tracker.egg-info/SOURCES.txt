@@ -3,9 +3,11 @@ budget_tracker/__init__.py
 budget_tracker/constants.py
 budget_tracker/files_manager.py
 budget_tracker/main.py
+budget_tracker/user_input.py
 budget_tracker.egg-info/PKG-INFO
 budget_tracker.egg-info/SOURCES.txt
 budget_tracker.egg-info/dependency_links.txt
 budget_tracker.egg-info/entry_points.txt
 budget_tracker.egg-info/top_level.txt
 tests/test_files_manager.py
+tests/test_user_input.py

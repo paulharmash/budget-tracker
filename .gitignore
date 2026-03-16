@@ -1,10 +1,10 @@
 # Virtual environment
 venv/
-.env/
 
 # Python cache
 __pycache__/
 *.pyc
+**/*.egg-info/
 
 # Environment variables
 .env
@@ -13,6 +13,6 @@ __pycache__/
 .vscode/
 .idea/
 
-# Requirements + additional materials
+# Docs/notes
 req.md
 branches.md

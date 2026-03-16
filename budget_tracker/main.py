@@ -8,3 +8,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
+The pragmatic test-user flow right now:
+
+They clone the repo
+python3 -m venv venv && source venv/bin/activate
+pip install -e .
+Done
+"""
