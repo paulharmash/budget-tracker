@@ -2,7 +2,7 @@ import unittest
 import unittest.mock
 
 from budget_tracker.user_input import *
-from budget_tracker.constants import CATEGORIES, TYPE
+from budget_tracker.constants import CATEGORIES, TYPE, CURRENCIES
 
 # The three test cases below are identical as for now that's what they have to check
 class TestDateInput(unittest.TestCase):
@@ -77,3 +77,10 @@ class TestAmountInput(unittest.TestCase):
             amount_input()
             validate = my_mock.call_args[1]["validate"]
             self.assertEqual(validate("-111"), 'Please enter an integer')
+
+# Tests for the currency input
+class TestCurrencyInput(unittest.TestCase):
+    def test_currency_input(self):
+        with unittest.mock.patch("budget_tracker.user_input.questionary.select") as my_mock:
+            currency_input()
+            my_mock.assert_called_with('Pick the currency', choices=CURRENCIES)

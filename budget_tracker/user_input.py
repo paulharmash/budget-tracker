@@ -1,7 +1,7 @@
 import datetime
 import questionary
 
-from budget_tracker.constants import CATEGORIES, TYPE
+from budget_tracker.constants import CATEGORIES, TYPE, CURRENCIES
 
 def user_input():
     date = date_input()
@@ -40,7 +40,8 @@ def amount_input():
                             ).ask()
 
 def currency_input():
-    pass
+    return questionary.select("Pick the currency",
+                       choices=CURRENCIES).ask()
 
 def validate_date(date):
     format = "%d/%m/%Y"
