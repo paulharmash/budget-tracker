@@ -5,7 +5,7 @@ TABLE_NAME = "table.csv"
 # Income/expences
 INCOME = "Income"
 EXPENCES = "Expences"
-TYPE = [INCOME, EXPENCES]
+CASH_FLOW_TYPE = [INCOME, EXPENCES]
 
 # Currencies
 USD = "USD"

@@ -2,47 +2,39 @@ import unittest
 import unittest.mock
 
 from budget_tracker.user_input import *
-from budget_tracker.constants import CATEGORIES, TYPE, CURRENCIES
+from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES
 
 # The three test cases below are identical as for now that's what they have to check
 class TestDateInput(unittest.TestCase):
-    
     def test_enter(self):
-        with unittest.mock.patch("budget_tracker.user_input.input", return_value=""):
-            result = date_input()
+        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
+            date_input()
+            todays_date = my_mock.call_args[1]["default"]
             t = datetime.datetime.now()
-            self.assertEqual(
-                f"{t.strftime('%d')}/{t.strftime('%m')}/{t.strftime('%Y')}",
-                result
-            )
+            self.assertEqual(todays_date, date_formatter(t))
 
     def test_adding_valid_date(self):
         entered = "14/03/2026"
-        with unittest.mock.patch("budget_tracker.user_input.input", return_value=entered):
-            result = date_input()
-            self.assertEqual(entered, result)
+        self.assertEqual(validation(entered), True)
 
     def test_adding_invalid_date(self):
         entered = "abc"
-        with self.assertRaises(ValueError):
-            validate_date(entered)
+        self.assertEqual(validation(entered), "Please enter the date in format DD/MM/YYYY")
 
     def test_adding_wrong_formatting(self):
         entered = "14.03.2026"
-        with self.assertRaises(ValueError):
-            validate_date(entered)
+        self.assertEqual(validation(entered), "Please enter the date in format DD/MM/YYYY")
 
     def test_adding_impossible_date(self):
         entered = "31/02/2026"
-        with self.assertRaises(ValueError):
-            validate_date(entered)
+        self.assertEqual(validation(entered), "Please enter the date in format DD/MM/YYYY")
         
 # Tests for the type input
 class TestTypeInput(unittest.TestCase):
     def test_type_input(self):
         with unittest.mock.patch("budget_tracker.user_input.questionary.select") as my_mock:
             income_expences_choice()
-            my_mock.assert_called_with('Pick the category', choices=TYPE)
+            my_mock.assert_called_with('Pick the type', choices=CASH_FLOW_TYPE)
 
 # Tests for the category input
 class TestCategoryInput(unittest.TestCase):
@@ -53,7 +45,6 @@ class TestCategoryInput(unittest.TestCase):
 
 # Tests for the amount input
 class TestAmountInput(unittest.TestCase):
-
     def test_integer_amount_input(self):
         with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
             amount_input()
