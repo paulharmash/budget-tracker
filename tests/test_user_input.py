@@ -1,10 +1,32 @@
 import unittest
 import unittest.mock
+import os
+import shutil
 
 from budget_tracker.user_input import *
-from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES
+from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES, DATA_FOLDER, TABLE_NAME
 
-# The three test cases below are identical as for now that's what they have to check
+# Tests for the write_row() function
+class TestWriteRow(unittest.TestCase):
+    def setUp(self):
+        create_file()
+        return super().setUp()
+
+    def tearDown(self):
+        if os.path.exists(DATA_FOLDER):
+            shutil.rmtree(DATA_FOLDER)
+        return super().tearDown()
+
+    def test_adding_row(self):
+        row = ["17/03/2026", "Expences", "Food", "45", "USD"]
+        path = os.path.join(DATA_FOLDER, TABLE_NAME)
+        write_row(row, path)
+        with open(path, "r") as csvfile:
+            csvreader = csv.reader(csvfile)
+            last_row = list(csvreader)[-1]
+            self.assertEqual(row, last_row)
+        
+# Tests for date input
 class TestDateInput(unittest.TestCase):
     def test_enter(self):
         with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:

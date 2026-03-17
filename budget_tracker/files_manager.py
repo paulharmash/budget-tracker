@@ -1,4 +1,6 @@
 import os
+import csv
+
 from pathlib import Path
 from budget_tracker.constants import *
 
@@ -12,5 +14,9 @@ def create_file():
     full_path = os.path.join(DATA_FOLDER, TABLE_NAME)
     if not os.path.exists(full_path):
         Path(full_path).touch()
-    
+        # Adding headings
+        with open(full_path, "w") as csvfile:
+            csvwriter = csv.writer(csvfile)
+            csvwriter.writerow(HEADINGS)
+   
     return full_path

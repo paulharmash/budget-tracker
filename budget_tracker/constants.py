@@ -2,10 +2,18 @@
 DATA_FOLDER = "./data"
 TABLE_NAME = "table.csv"
 
+#Table headers
+HEADING_DATE = "Date"
+HEADING_TYPE = "Cash flow type"
+HEADING_CATEGOTY = "Category"
+HEADING_AMOUNT = "Amount"
+HEADING_CURRENCY = "Currency"
+HEADINGS = [HEADING_DATE, HEADING_TYPE, HEADING_CATEGOTY, HEADING_AMOUNT, HEADING_CURRENCY]
+
 # Income/expences
 INCOME = "Income"
 EXPENCES = "Expences"
-CASH_FLOW_TYPE = [INCOME, EXPENCES]
+CASH_FLOW_TYPE = [EXPENCES, INCOME]
 
 # Currencies
 USD = "USD"

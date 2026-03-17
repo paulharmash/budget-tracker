@@ -1,17 +1,27 @@
 import datetime
 import questionary
+import csv
 
 from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES
+from budget_tracker.files_manager import create_file
 
 def user_input():
-    date = date_input()
-    cash_flow_type = income_expences_choice()
-    category = category_input()
-    amount = amount_input()
-    currency = currency_input()
-    print(f"User's input: {date}, {cash_flow_type}, {category}, {amount}, {currency}")
-    #TODO - Write data to the table
-    #Note - I'm passing strings here, might want to change to something else later
+
+    path = create_file()
+    row = []
+
+    row.append(date_input())
+    row.append(income_expences_choice())
+    row.append(category_input())
+    row.append(amount_input())
+    row.append(currency_input())
+    
+    write_row(row, path)
+    
+def write_row(row, path):
+    with open(path, "a") as csvfile:
+        csvwriter = csv.writer(csvfile)
+        csvwriter.writerow(row)
 
 def date_input():
     t = datetime.datetime.now()

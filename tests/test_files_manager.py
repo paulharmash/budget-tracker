@@ -1,7 +1,8 @@
 import unittest
 import os
 import shutil
-from pathlib import Path
+import csv
+# from pathlib import Path
 
 from budget_tracker.files_manager import create_file
 from budget_tracker.constants import *
@@ -27,6 +28,13 @@ class TestWhenNothingExists(unittest.TestCase):
         self.assertTrue(
             os.path.exists(file_path)
         )
+        with open(file_path, "r") as csvfile:
+            csvreader = csv.reader(csvfile)
+            header = next(csvreader)
+            self.assertEqual(
+                header,
+                HEADINGS
+            )
 
 class TestWhenFolderExists(unittest.TestCase):
     def setUp(self):
@@ -62,6 +70,15 @@ class TestWhenFileExists(unittest.TestCase):
     
     def test_file_exists(self):
         file_path = create_file()
+        with open(file_path, "r") as csvfile:
+            csvreader = csv.reader(csvfile)
+            number_of_rows_before = len(list(csvreader))
+        create_file()
+        with open(file_path, "r") as csvfile:
+            csvreader = csv.reader(csvfile)
+            number_of_rows_after = len(list(csvreader))
+        self.assertEqual(number_of_rows_before, number_of_rows_after)
+
         self.assertEqual(
             file_path,
             os.path.join(DATA_FOLDER, TABLE_NAME)
@@ -69,6 +86,3 @@ class TestWhenFileExists(unittest.TestCase):
         self.assertTrue(
             os.path.exists(file_path)
         )
-    
-    #TODO - calling create_file() twice doesn't corrupt or recreate the existing file (e.g. check that a pre-written value inside the file survives)
-
