@@ -4,10 +4,11 @@ version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = [
     "questionary>=2.0",
+    "requests>=2.32"
 ]
 
 [project.scripts]
 budget-tracker = "budget_tracker.main:main"
-
+touc
 [tool.setuptools.packages.find]
 include = ['budget_tracker*']

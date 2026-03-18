@@ -23,6 +23,7 @@ USD = "USD"
 EUR = "EUR"
 UAH = "UAH"
 CZK = "CZK"
+BASELINE = "CZK"
 CURRENCIES = [USD, EUR, UAH, CZK]
 
 # Categories

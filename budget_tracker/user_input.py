@@ -2,7 +2,7 @@ import datetime
 import questionary
 import csv
 
-from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES, DATA_FOLDER, TABLE_NAME
+from budget_tracker.constants import *
 from budget_tracker.files_manager import create_file
 
 def user_input():
@@ -15,6 +15,10 @@ def user_input():
     row.append(category_input())
     row.append(amount_input())
     row.append(currency_input())
+
+    # Call here currency exchange function and append to the row too
+    # row.append(currency_exchange(row[0], row[3], row[4]))
+    # row.append(BASELINE)
     
     write_row(row, path)
     
