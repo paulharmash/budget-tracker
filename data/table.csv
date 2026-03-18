@@ -1,3 +1,6 @@
 Date,Cash flow type,Category,Amount,Currency
-18/03/2026,Expences,Food,45,USD
-18/03/2026,Expences,Food,435,USD
+18/03/2026,Expences,Food,100,USD,2118.72,CZK
+18/03/2026,Expences,Eating out,33,EUR,806.53,CZK
+18/03/2026,Expences,Food,100,EUR,2444.03,CZK
+18/03/2026,Expences,Food,100,UAH,48.23,CZK
+18/03/2026,Expences,Food,1000,CZK,1000.0,CZK

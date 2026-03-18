@@ -4,6 +4,7 @@ import csv
 
 from budget_tracker.constants import *
 from budget_tracker.files_manager import create_file
+from budget_tracker.currency_exchange import currency_exchange
 
 def user_input():
 
@@ -15,10 +16,8 @@ def user_input():
     row.append(category_input())
     row.append(amount_input())
     row.append(currency_input())
-
-    # Call here currency exchange function and append to the row too
-    # row.append(currency_exchange(row[0], row[3], row[4]))
-    # row.append(BASELINE)
+    row.append(currency_exchange(row[0], row[3], row[4]))
+    row.append(BASELINE)
     
     write_row(row, path)
     
