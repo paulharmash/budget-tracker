@@ -2,12 +2,12 @@ import datetime
 import questionary
 import csv
 
-from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES
+from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES, DATA_FOLDER, TABLE_NAME
 from budget_tracker.files_manager import create_file
 
 def user_input():
 
-    path = create_file()
+    path = create_file(DATA_FOLDER, TABLE_NAME)
     row = []
 
     row.append(date_input())

@@ -1,6 +1,9 @@
 # Table path
 DATA_FOLDER = "./data"
 TABLE_NAME = "table.csv"
+# Test table path
+TEST_DATA_FOLDER = "./test_data"
+TEST_TABLE_NAME = "test_table.csv"
 
 #Table headers
 HEADING_DATE = "Date"

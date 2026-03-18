@@ -4,22 +4,22 @@ import os
 import shutil
 
 from budget_tracker.user_input import *
-from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES, DATA_FOLDER, TABLE_NAME
+from budget_tracker.constants import CATEGORIES, CASH_FLOW_TYPE, CURRENCIES, TEST_DATA_FOLDER, TEST_TABLE_NAME
 
 # Tests for the write_row() function
 class TestWriteRow(unittest.TestCase):
     def setUp(self):
-        create_file()
+        create_file(TEST_DATA_FOLDER, TEST_TABLE_NAME)
         return super().setUp()
 
     def tearDown(self):
-        if os.path.exists(DATA_FOLDER):
-            shutil.rmtree(DATA_FOLDER)
+        if os.path.exists(TEST_DATA_FOLDER):
+            shutil.rmtree(TEST_DATA_FOLDER)
         return super().tearDown()
 
     def test_adding_row(self):
         row = ["17/03/2026", "Expences", "Food", "45", "USD"]
-        path = os.path.join(DATA_FOLDER, TABLE_NAME)
+        path = os.path.join(TEST_DATA_FOLDER, TEST_TABLE_NAME)
         write_row(row, path)
         with open(path, "r") as csvfile:
             csvreader = csv.reader(csvfile)

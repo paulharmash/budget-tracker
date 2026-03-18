@@ -5,13 +5,13 @@ from pathlib import Path
 from budget_tracker.constants import *
 
 # Function to create check if the file exist or create it if not
-def create_file():
+def create_file(data_folder, table_name):
     # Creating a doc folder if it doesn't exist
-    if not os.path.exists(DATA_FOLDER):
-        os.mkdir(DATA_FOLDER)
+    if not os.path.exists(data_folder):
+        os.mkdir(data_folder)
 
     # Creating a file if it doesn't exist
-    full_path = os.path.join(DATA_FOLDER, TABLE_NAME)
+    full_path = os.path.join(data_folder, table_name)
     if not os.path.exists(full_path):
         Path(full_path).touch()
         # Adding headings
