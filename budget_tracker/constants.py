@@ -1,5 +1,7 @@
+from pathlib import Path
+
 # Table path
-DATA_FOLDER = "./data"
+DATA_FOLDER = Path.home() / ".budget-tracker"
 TABLE_NAME = "table.csv"
 # Test table path
 TEST_DATA_FOLDER = "./test_data"
