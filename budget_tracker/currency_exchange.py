@@ -19,4 +19,4 @@ def currency_exchange(date, amount, currency):
     return str(converted_sum)
 
 if __name__ == "__main__":
-    currency_exchange("17/03/2026", "100", "USD")
+    currency_exchange("17/03/2026", "100", "CZK")
