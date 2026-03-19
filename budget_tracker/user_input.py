@@ -42,7 +42,7 @@ def category_input():
 
 def amount_input():
     return questionary.text("Enter the amount",
-                            amount_input_validation
+                            validate=amount_input_validation
                             ).ask()
 
 def amount_input_validation(entry):
