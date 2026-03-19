@@ -1,4 +1,3 @@
-import questionary
 import unittest
 from unittest.mock import Mock
 

@@ -9,7 +9,7 @@ def currency_exchange(date, amount, currency):
     try:
         rates_obj = requests.get(url, timeout=1, verify=True)
         rates_obj.raise_for_status()
-    except (requests.exceptions.RequestException):
+    except requests.exceptions.RequestException:
         return None
     
     rates_json = rates_obj.json()

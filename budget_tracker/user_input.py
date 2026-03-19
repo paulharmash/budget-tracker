@@ -42,8 +42,16 @@ def category_input():
 
 def amount_input():
     return questionary.text("Enter the amount",
-                            validate=lambda entry: True if entry.isdigit() else "Please enter an integer"
+                            amount_input_validation
                             ).ask()
+
+def amount_input_validation(entry):
+    try:
+        if float(entry) > 0:
+            return True
+        return "Please enter a positive number"
+    except ValueError:
+        return "Please enter a number"
 
 def currency_input():
     return questionary.select("Pick the currency",

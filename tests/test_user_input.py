@@ -67,30 +67,32 @@ class TestCategoryInput(unittest.TestCase):
 
 # Tests for the amount input
 class TestAmountInput(unittest.TestCase):
-    def test_integer_amount_input(self):
-        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
-            amount_input()
-            validate = my_mock.call_args[1]["validate"]
-            self.assertTrue(validate("111"))
+
+    def test_float_amount_input(self):
+        entry = "30"
+        result = amount_input_validation(entry)
+        self.assertEqual(result, True)
     
-    def test_non_integer_amount_input(self):
-        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
-            amount_input()
-            validate = my_mock.call_args[1]["validate"]
-            self.assertEqual(validate("111.1"), 'Please enter an integer')
-    
-    def test_empty_amount_input(self):
-        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
-            amount_input()
-            validate = my_mock.call_args[1]["validate"]
-            self.assertEqual(validate(""), 'Please enter an integer')
+    def test_float_with_dec_amount_input(self):
+        entry = "30.5"
+        result = amount_input_validation(entry)
+        self.assertEqual(result, True)
     
     def test_negative_amount_input(self):
-        with unittest.mock.patch("budget_tracker.user_input.questionary.text") as my_mock:
-            amount_input()
-            validate = my_mock.call_args[1]["validate"]
-            self.assertEqual(validate("-111"), 'Please enter an integer')
-
+        entry = "-40"
+        result = amount_input_validation(entry)
+        self.assertEqual(result, "Please enter a positive number")
+    
+    def test_invalid_number_amount_input(self):
+        entry = "abs"
+        result = amount_input_validation(entry)
+        self.assertEqual(result, "Please enter a number")
+    
+    def test_invalid_number_amount_input(self):
+        entry = ""
+        result = amount_input_validation(entry)
+        self.assertEqual(result, "Please enter a number")
+    
 # Tests for the currency input
 class TestCurrencyInput(unittest.TestCase):
     def test_currency_input(self):
