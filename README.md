@@ -25,3 +25,8 @@ Data is also converted to USD based on the currency exchange rate on the date pr
    ```
    budget-tracker
    ```
+
+5. Find the data table at:
+   ```
+   Home/{username}/.budget-tracker
+   ```
